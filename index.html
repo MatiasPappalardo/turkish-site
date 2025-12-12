@@ -336,6 +336,20 @@
       font-size: clamp(1.8rem, 3vw, 2.4rem);
     }
 
+    .slide-chip {
+      display: inline-block;
+      background: rgba(0,0,0,0.55);
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.28);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+      backdrop-filter: blur(4px);
+    }
+
+    .slide-chip.title {
+      padding: 0.45rem 1rem;
+    }
+
     .slide-desc {
       font-size: 0.95rem;
       max-width: 460px;
@@ -939,9 +953,9 @@
           <div class="slide-bg" style="background-image:url('https://raw.githubusercontent.com/MatiasPappalardo/turkish-site/main/cafe-kebab.png');"></div>
           <div class="slide-content">
             <span class="slide-tag">Café turco</span>
-            <h2 class="slide-title">Auténtico café Turco en arena</h2>
+            <h2 class="slide-title"><span class="slide-chip title">Auténtico café Turco en arena</span></h2>
             <p class="slide-desc">
-              Té turco y baklava.
+              <span class="slide-chip">Té turco y baklava.</span>
             </p>
             <div class="slide-ctas">
               <a
@@ -949,7 +963,6 @@
                 href="https://wa.me/56931854328?text=%C2%A1Hola!%20%20Bienvenido%20a%20Turkish%20Kebab%20%F0%9F%91%8B%0AEscr%C3%ADbenos%20por%20ac%C3%A1%20para%20hacer%20tu%20pedido%20o%20reservar%20tu%20mesa."
                 target="_blank"
                 rel="noopener noreferrer">Lo quiero</a>
-              <button class="btn btn-outline">Desde <span>$6.990</span></button>
             </div>
           </div>
         </div>

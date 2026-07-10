@@ -152,6 +152,28 @@
       font-size: 0.9rem;
     }
 
+    /* Hamburguesa mobile */
+    .hamburger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    header.open nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      width: 100%;
+      margin-top: 0.6rem;
+    }
+
     nav a {
       position: relative;
       text-transform: uppercase;
@@ -854,6 +876,19 @@
         position: static;
       }
 
+      .hamburger {
+        display: inline-flex;
+      }
+
+      nav {
+        display: none;
+        width: 100%;
+      }
+
+      header.open nav {
+        display: flex;
+      }
+
       .hero-top-text {
         flex-direction: column;
         align-items: flex-start;
@@ -892,7 +927,15 @@
       </div>
     </div>
 
-    <nav>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect y="1" width="20" height="2" rx="1" fill="currentColor" />
+        <rect y="6" width="20" height="2" rx="1" fill="currentColor" />
+        <rect y="11" width="20" height="2" rx="1" fill="currentColor" />
+      </svg>
+    </button>
+
+    <nav id="main-nav">
       <a href="#inicio">Inicio</a>
       <a href="https://drive.google.com/file/d/1D8XQPCR_uU_hRXQZSwbXXEUOJ1gzaHAf/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">Menú</a>
       <a href="#promos">Promos</a>
@@ -1179,6 +1222,22 @@
   </a>
 
   <script>
+    (function(){
+      const header = document.querySelector('header');
+      const btn = header && header.querySelector('.hamburger');
+      if (!btn) return;
+      btn.addEventListener('click', function(e){
+        const open = header.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      window.addEventListener('resize', function(){
+        if (window.innerWidth > 640 && header.classList.contains('open')) {
+          header.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot");
     const prevBtn = document.querySelector(".carousel-arrow.left");

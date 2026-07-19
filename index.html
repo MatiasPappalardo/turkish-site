@@ -96,23 +96,25 @@
       top: 1.4rem;
       z-index: 49;
       padding: 0.75rem 5vw;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      column-gap: 1.75rem;
+      row-gap: 0.75rem;
       background: rgba(71, 0, 15, 0.96);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255,255,255,0.16);
     }
 
     .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      width: 100%;
+      display: contents;
     }
 
     .logo {
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      min-width: 0;
     }
 
     .logo-mark {
@@ -134,12 +136,14 @@
       display: flex;
       flex-direction: column;
       gap: 0.1rem;
+      min-width: 0;
     }
 
     .logo-title {
       font-family: "Playfair Display", serif;
       font-size: 1.4rem;
       letter-spacing: 0.08em;
+      line-height: 1.05;
       text-transform: uppercase;
     }
 
@@ -147,6 +151,7 @@
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.18em;
+      line-height: 1.25;
       color: var(--accent-yellow);
     }
 
@@ -155,18 +160,22 @@
       align-items: center;
       gap: 1.4rem;
       font-size: 0.9rem;
-      margin-top: 0.75rem;
+      min-width: 0;
+      flex-wrap: wrap;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      margin-left: auto;
     }
 
     .header-order-btn {
       white-space: nowrap;
+    }
+
+    .mobile-order-btn {
+      display: none;
     }
 
     /* Hamburguesa mobile */
@@ -847,10 +856,36 @@
     /* Responsive */
 
     @media (max-width: 960px) {
-      nav {
-        width: 100%;
+      header {
+        grid-template-columns: 1fr auto;
+        column-gap: 1rem;
+      }
+
+      .header-top {
+        display: flex;
         justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+
+      .logo-title {
+        font-size: 1.25rem;
+        letter-spacing: 0.06em;
+      }
+
+      .logo-sub {
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+      }
+
+      nav {
+        grid-column: 1 / -1;
+        width: 100%;
+        justify-content: flex-start;
         flex-wrap: wrap;
+        gap: 1rem 1.15rem;
       }
 
       .hero-carousel {
@@ -885,6 +920,8 @@
 
       header {
         position: static;
+        display: block;
+        padding: 0.75rem 4.5vw 1rem;
       }
 
       .hamburger {
@@ -892,11 +929,39 @@
       }
 
       .header-top {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
+        gap: 0.75rem;
+        width: 100%;
+      }
+
+      .logo {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      .logo-mark {
+        width: 40px;
+        height: 40px;
+      }
+
+      .logo-title {
+        font-size: 1.05rem;
+        letter-spacing: 0.04em;
+        line-height: 1.05;
+      }
+
+      .logo-sub {
+        max-width: 25ch;
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        line-height: 1.25;
       }
 
       .header-actions {
-        gap: 0.5rem;
+        flex-shrink: 0;
+        gap: 0.45rem;
       }
 
       .header-order-btn {
@@ -905,14 +970,45 @@
         letter-spacing: 0.08em;
       }
 
+      .mobile-order-btn {
+        display: inline-flex;
+      }
+
+      .desktop-order-btn {
+        display: none;
+      }
+
       nav {
         display: none;
         width: 100%;
         margin-top: 0.9rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.35rem;
+        padding: 0.85rem 1rem;
+        border-radius: 18px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(98, 4, 24, 0.92);
       }
 
       header.open nav {
         display: flex;
+      }
+
+      nav a {
+        width: 100%;
+        padding: 0.6rem 0;
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+      }
+
+      nav a::after {
+        display: none;
+      }
+
+      nav .btn {
+        width: 100%;
+        margin-top: 0.35rem;
       }
 
       .hero-top-text {
@@ -955,7 +1051,7 @@
       </div>
 
       <div class="header-actions">
-        <a class="btn btn-primary header-order-btn" href="https://pedidos.turkishkebab.cl/" target="_blank" rel="noopener noreferrer">Pedidos</a>
+        <a class="btn btn-primary header-order-btn mobile-order-btn" href="https://pedidos.turkishkebab.cl/" target="_blank" rel="noopener noreferrer">Pedidos</a>
         <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
           <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect y="1" width="20" height="2" rx="1" fill="currentColor" />
@@ -972,6 +1068,7 @@
       <a href="#promos">Promos</a>
       <a href="#sucursales">Sobre Nosotros</a>
       <a href="#contacto">Contacto</a>
+      <a class="btn btn-primary desktop-order-btn" href="https://pedidos.turkishkebab.cl/" target="_blank" rel="noopener noreferrer">Pedidos</a>
       <a
         class="btn btn-primary"
         href="https://wa.me/56931854328?text=Hola%20quisiera%20reservar%20una%20mesa"
